@@ -5,12 +5,15 @@ using UnityEngine.EventSystems;
 public class Window : MonoBehaviour , IPointerClickHandler, IPointerDownHandler  {
 
 	[SerializeField] Button closeButton = null;
-    public Transform content = null;
-	RectTransform mRectTrans = null;
-	public WindowSystem windowSystem = null;
+    [SerializeField] Transform content = null;
+    RectTransform mRectTrans = null;
+    [SerializeField] WindowSystem windowSystem = null;
+
+    public Transform Content {
+        get { return content; }
+    }
 
 	void Awake(){
-
 		if (null != closeButton) {
 			closeButton.onClick.AddListener (CloseWindow);
 		}
@@ -18,6 +21,10 @@ public class Window : MonoBehaviour , IPointerClickHandler, IPointerDownHandler 
 		mRectTrans.anchorMin = new Vector2 (0.0f, 1.0f);
 		mRectTrans.anchorMax = new Vector2 (0.0f, 1.0f);
 	}
+
+    private void Start() {
+        windowSystem = GetComponentInParent<WindowSystem>();
+    }
 
     public void SetPosition(Vector2 position) {
         mRectTrans.anchoredPosition = position;
