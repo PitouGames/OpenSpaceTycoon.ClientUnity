@@ -8,8 +8,7 @@ public class WindowSystem : MonoBehaviour {
         Window newWindow = Instantiate<Window>(windowPrefab);
         newWindow.transform.SetParent(transform);
         newWindow.SetPosition(Vector2.zero);
-        newWindow.windowSystem = this;
-        data.transform.SetParent(newWindow.content);
+        data.transform.SetParent(newWindow.Content);
         RectTransform r = data.GetComponent<RectTransform>();
         r.anchorMin = Vector2.zero;
         r.anchorMax = Vector2.one;
