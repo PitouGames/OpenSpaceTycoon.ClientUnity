@@ -1,10 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TestGUIManager : MonoBehaviour {
-
-    WindowSystem winSystem = null;
+    private WindowSystem winSystem = null;
 
     private void Start() {
         winSystem = FindObjectOfType<WindowSystem>();
@@ -12,5 +9,11 @@ public class TestGUIManager : MonoBehaviour {
 
     public void CreateEmpty() {
         winSystem.NewWindow("name", null);
+    }
+
+    public void CreateStationView(Object obj) {
+        GameObject newObj = Instantiate(obj) as GameObject;
+        Window window = winSystem.NewWindow("name", newObj);
+        window.Title = "Station info";
     }
 }

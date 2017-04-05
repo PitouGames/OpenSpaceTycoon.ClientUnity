@@ -1,26 +1,34 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class Window : MonoBehaviour , IPointerClickHandler, IPointerDownHandler  {
+public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
 
-	[SerializeField] Button closeButton = null;
-    [SerializeField] Transform content = null;
-    RectTransform mRectTrans = null;
-    [SerializeField] WindowSystem windowSystem = null;
+    [SerializeField]
+    private Button closeButton = null;
 
-    public Transform Content {
+    [SerializeField]
+    private Transform content = null;
+
+    [SerializeField]
+    private Text title = null;
+
+    private RectTransform mRectTrans = null;
+    private WindowSystem windowSystem = null;
+
+    public Transform Content
+    {
         get { return content; }
     }
 
-	void Awake(){
-		if (null != closeButton) {
-			closeButton.onClick.AddListener (CloseWindow);
-		}
-		mRectTrans = GetComponent<RectTransform> ();
-		mRectTrans.anchorMin = new Vector2 (0.0f, 1.0f);
-		mRectTrans.anchorMax = new Vector2 (0.0f, 1.0f);
-	}
+    private void Awake() {
+        if (null != closeButton) {
+            closeButton.onClick.AddListener(CloseWindow);
+        }
+        mRectTrans = GetComponent<RectTransform>();
+        mRectTrans.anchorMin = new Vector2(0.0f, 1.0f);
+        mRectTrans.anchorMax = new Vector2(0.0f, 1.0f);
+    }
 
     private void Start() {
         windowSystem = GetComponentInParent<WindowSystem>();
@@ -30,17 +38,27 @@ public class Window : MonoBehaviour , IPointerClickHandler, IPointerDownHandler 
         mRectTrans.anchoredPosition = position;
     }
 
-	private void CloseWindow(){
-		GameObject.Destroy (gameObject);
-	}
-		
-	public void OnPointerClick(PointerEventData data){
-		Debug.Log ("clic");
-	}
+    public string Title
+    {
+        get { return (title == null ? "" : title.text); }
+        set
+        {
+            if (title != null) {
+                title.text = value;
+            }
+        }
+    }
 
-	public void OnPointerDown(PointerEventData data){
-        if(null != windowSystem)
-            windowSystem.BringToFront (this);
-	}
+    private void CloseWindow() {
+        GameObject.Destroy(gameObject);
+    }
 
+    public void OnPointerClick(PointerEventData data) {
+        Debug.Log("clic");
+    }
+
+    public void OnPointerDown(PointerEventData data) {
+        if (null != windowSystem)
+            windowSystem.BringToFront(this);
+    }
 }

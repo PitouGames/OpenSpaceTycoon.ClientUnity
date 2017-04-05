@@ -2,10 +2,9 @@
 using UnityEngine.EventSystems;
 
 public class WindowResizeHandler : MonoBehaviour, IDragHandler {
+    private RectTransform mRectTrans = null;
 
-    RectTransform mRectTrans = null;
-
-    void Awake() {
+    private void Awake() {
         mRectTrans = GetComponentInParent<Window>().GetComponent<RectTransform>();
     }
 
