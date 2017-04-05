@@ -2,8 +2,9 @@
 
 public class WindowSystem : MonoBehaviour {
 
-    [SerializeField] Window windowPrefab = null;
-    
+    [SerializeField]
+    private Window windowPrefab = null;
+
     public Window NewWindow(string name, GameObject data) {
         Window newWindow = Instantiate<Window>(windowPrefab);
         newWindow.transform.SetParent(transform);
@@ -17,7 +18,7 @@ public class WindowSystem : MonoBehaviour {
         return newWindow;
     }
 
-    public void BringToFront(Window window){
-		window.transform.SetAsLastSibling ();        
-	}
+    public void BringToFront(Window window) {
+        window.transform.SetAsLastSibling();
+    }
 }

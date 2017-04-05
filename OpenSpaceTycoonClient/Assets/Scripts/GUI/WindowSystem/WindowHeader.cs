@@ -2,14 +2,13 @@
 using UnityEngine.EventSystems;
 
 public class WindowHeader : MonoBehaviour, IDragHandler {
-	RectTransform mRectTrans = null;
+    private RectTransform mRectTrans = null;
 
-	void Awake(){
-		mRectTrans = GetComponentInParent<Window> ().GetComponent<RectTransform> ();	
-	}
+    private void Awake() {
+        mRectTrans = GetComponentInParent<Window>().GetComponent<RectTransform>();
+    }
 
-	public void OnDrag(PointerEventData data ){				
-		mRectTrans.anchoredPosition += data.delta;
-	}
-
+    public void OnDrag(PointerEventData data) {
+        mRectTrans.anchoredPosition += data.delta;
+    }
 }
