@@ -6,8 +6,11 @@ public class TestGUIManager : MonoBehaviour {
     [SerializeField]
     private MapView mapViewPrefab = null;
 
+    private DataModel dataModel = null;
+
     private void Start() {
         winSystem = FindObjectOfType<WindowSystem>();
+        dataModel = FindObjectOfType<DataModel>();
     }
 
     public void CreateEmpty() {
@@ -24,5 +27,6 @@ public class TestGUIManager : MonoBehaviour {
         MapView newObj = Instantiate<MapView>(mapViewPrefab);
         Window window = winSystem.NewWindow("MapView", newObj.gameObject);
         window.Title = "Map view";
+        newObj.SetUniverse(dataModel.Universe);
     }
 }

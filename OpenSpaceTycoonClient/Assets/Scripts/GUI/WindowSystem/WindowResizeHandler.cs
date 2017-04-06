@@ -14,7 +14,6 @@ public class WindowResizeHandler : MonoBehaviour, IDragHandler {
     }
 
     public void OnDrag(PointerEventData data) {
-        Debug.Log(_contentInfos);
         float currentWidth = _rectTrans.sizeDelta.x;
         float newWidth = currentWidth + data.delta.x;
         if (null != _contentInfos && newWidth < (float)_contentInfos.minWidthPixel) {
