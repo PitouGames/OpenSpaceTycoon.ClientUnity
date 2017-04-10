@@ -9,11 +9,8 @@ public class StationInfosView : MonoBehaviour {
 
     private Station _Station = null;
 
-    private void Awake() {
-        _Station = new Station(Station.StationType.Agricultural, null, new OSTTools.Vector3D());
-        stationName.text = _Station.Name;
-    }
-
-    private void Update() {
+    public void SetStation(Station station) {
+        _Station = station;
+        stationName.text = station.Name;
     }
 }
