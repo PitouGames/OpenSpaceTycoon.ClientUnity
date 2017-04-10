@@ -66,12 +66,15 @@ namespace UnityEngine.UI.Extensions {
         /// <summary>
         /// UV rectangle used by the texture.
         /// </summary>
-        public Rect uvRect {
-            get {
+        public Rect uvRect
+        {
+            get
+            {
                 return m_UVRect;
             }
 
-            set {
+            set
+            {
                 if (m_UVRect == value)
                     return;
                 m_UVRect = value;
@@ -82,12 +85,15 @@ namespace UnityEngine.UI.Extensions {
         /// <summary>
         /// Points to be drawn in the line.
         /// </summary>
-        public Vector2[] Points {
-            get {
+        public Vector2[] Points
+        {
+            get
+            {
                 return m_points;
             }
 
-            set {
+            set
+            {
                 if (m_points == value)
                     return;
                 m_points = value;
@@ -99,29 +105,6 @@ namespace UnityEngine.UI.Extensions {
             if (m_points == null)
                 return;
             Vector2[] pointsToDraw = m_points;
-            //If Bezier is desired, pick the implementation
-            if (BezierMode != BezierType.None && m_points.Length > 3) {
-                BezierPath bezierPath = new BezierPath();
-
-                bezierPath.SetControlPoints(pointsToDraw);
-                bezierPath.SegmentsPerCurve = BezierSegmentsPerCurve;
-                List<Vector2> drawingPoints;
-                switch (BezierMode) {
-                    case BezierType.Basic:
-                    drawingPoints = bezierPath.GetDrawingPoints0();
-                    break;
-
-                    case BezierType.Improved:
-                    drawingPoints = bezierPath.GetDrawingPoints1();
-                    break;
-
-                    default:
-                    drawingPoints = bezierPath.GetDrawingPoints2();
-                    break;
-                }
-
-                pointsToDraw = drawingPoints.ToArray();
-            }
 
             var sizeX = rectTransform.rect.width;
             var sizeY = rectTransform.rect.height;
