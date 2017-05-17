@@ -48,7 +48,7 @@ public class MapView : MonoBehaviour {
             sOnMap.transform.SetParent(mapZone.transform);
             RectTransform rt = sOnMap.GetComponent<RectTransform>();
             Vector3 pos = posSystem1[s.System.ID];
-            pos += new Vector3(s.Position.X, s.Position.Y, s.Position.Z);
+            pos += new Vector3((float)s.Position.X, (float)s.Position.Y, (float)s.Position.Z);
             rt.anchoredPosition = new Vector2(pos.x, pos.z);
             sOnMap.GetComponent<Image>().color = stationColor[s.Type];
             sOnMap.GetComponent<Image>().SetNativeSize();
@@ -88,14 +88,14 @@ public class MapView : MonoBehaviour {
 
         foreach (OSTData.Portal p in universe.Portals) {
             if (p.TypePortal == OSTData.Portal.PortalType.StarToStar) {
-                Vector3 pos1 = posSystem1[p.Station1.System.ID] + new Vector3(p.Station1.Position.X, 0.0f, p.Station1.Position.Z);
+                Vector3 pos1 = posSystem1[p.Station1.System.ID] + new Vector3((float)p.Station1.Position.X, 0.0f, (float)p.Station1.Position.Z);
                 splr.Points[index++] = new Vector2(pos1.x, pos1.z);
-                Vector3 pos2 = posSystem1[p.Station2.System.ID] + new Vector3(p.Station2.Position.X, 0.0f, p.Station2.Position.Z);
+                Vector3 pos2 = posSystem1[p.Station2.System.ID] + new Vector3((float)p.Station2.Position.X, 0.0f, (float)p.Station2.Position.Z);
                 splr.Points[index++] = new Vector2(pos2.x, pos2.z);
             } else {
-                Vector3 pos1 = posSystem1[p.Station1.System.ID] + new Vector3(p.Station1.Position.X, 0.0f, p.Station1.Position.Z);
+                Vector3 pos1 = posSystem1[p.Station1.System.ID] + new Vector3((float)p.Station1.Position.X, 0.0f, (float)p.Station1.Position.Z);
                 stationlr.Points[index2++] = new Vector2(pos1.x, pos1.z);
-                Vector3 pos2 = posSystem1[p.Station2.System.ID] + new Vector3(p.Station2.Position.X, 0.0f, p.Station2.Position.Z);
+                Vector3 pos2 = posSystem1[p.Station2.System.ID] + new Vector3((float)p.Station2.Position.X, 0.0f, (float)p.Station2.Position.Z);
                 stationlr.Points[index2++] = new Vector2(pos2.x, pos2.z);
             }
         }
