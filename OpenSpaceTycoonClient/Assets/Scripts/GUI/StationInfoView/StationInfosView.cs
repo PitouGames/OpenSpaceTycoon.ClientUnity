@@ -7,10 +7,20 @@ public class StationInfosView : MonoBehaviour {
     [SerializeField]
     private Text stationName = null;
 
-    private Station _Station = null;
+    [SerializeField]
+    private Text stationType = null;
+
+    private Station _station = null;
 
     public void SetStation(Station station) {
-        _Station = station;
-        stationName.text = station.Name;
+        _station = station;
+        UpdateView();
+    }
+
+    private void UpdateView() {
+        if (null != _station) {
+            stationName.text = _station.Name;
+            stationType.text = _station.Type.ToString();
+        }
     }
 }

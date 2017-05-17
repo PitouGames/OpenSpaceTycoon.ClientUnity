@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class TestGUIManager : MonoBehaviour {
     private WindowSystem winSystem = null;
@@ -11,6 +12,9 @@ public class TestGUIManager : MonoBehaviour {
 
     [SerializeField]
     private StationInfosView stationViewPrefab = null;
+
+    [SerializeField]
+    private ResourceHolderView resourceHolderViewPrefab = null;
 
     private DataModel dataModel = null;
 
@@ -47,5 +51,21 @@ public class TestGUIManager : MonoBehaviour {
         Window window = winSystem.NewWindow("StationList", newObj.gameObject);
         window.Title = "Station list";
         newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void LoadZone(InputField field) {
+        int zone = 1;
+        if (field.text != "") {
+            zone = int.Parse(field.text);
+        }
+        TransitionManager manager = GameObject.FindObjectOfType<TransitionManager>();
+        manager.LoadNewStationZone(zone);
+    }
+
+    public void StationHangar() {
+        ResourceHolderView newObj = Instantiate<ResourceHolderView>(resourceHolderViewPrefab);
+        Window window = winSystem.NewWindow("stationHangar", newObj.gameObject);
+        window.Title = "Station hangar";
+        newObj.SetZone(dataModel.Universe.GetStation(1).GetHangar(-1));
     }
 }
