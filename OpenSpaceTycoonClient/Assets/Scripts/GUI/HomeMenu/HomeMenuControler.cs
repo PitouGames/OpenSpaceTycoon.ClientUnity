@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class HomeMenuControler : MonoBehaviour {
 
+    [SerializeField]
+    private InputField stationToLoad = null;
+
     public void OnPlayClic() {
-        GameObject newObj = new GameObject("DataModel");
-        DontDestroyOnLoad(newObj);
+        int zoneToLoad = 2;
+        if (stationToLoad.text != "") {
+            zoneToLoad = int.Parse(stationToLoad.text);
+        }
 
-        DataModel model = newObj.AddComponent<DataModel>();
-        model.Universe = new OSTData.Universe(0);
-
-        UnityEngine.SceneManagement.SceneManager.LoadScene("PlayScene");
+        TransitionManager manager = GameObject.FindObjectOfType<TransitionManager>();
+        manager.LoadNewStationZone(zoneToLoad);
     }
 }
