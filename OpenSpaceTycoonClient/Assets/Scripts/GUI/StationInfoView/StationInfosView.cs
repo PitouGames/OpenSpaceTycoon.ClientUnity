@@ -10,10 +10,15 @@ public class StationInfosView : MonoBehaviour {
     [SerializeField]
     private Text stationType = null;
 
+    [SerializeField]
+    private ResourceHolderView hangarView = null;
+
     private Station _station = null;
 
     public void SetStation(Station station) {
         _station = station;
+        hangarView.SetZone(station.GetHangar(-1));
+
         UpdateView();
     }
 
