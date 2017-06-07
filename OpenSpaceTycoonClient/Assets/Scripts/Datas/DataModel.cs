@@ -12,13 +12,18 @@ public class DataModel : MonoBehaviour {
         Universe.Build();
 
         PlayerCorp = Universe.CreateCorp(1);
-        bool test = false;
-        foreach (OSTData.Station s in Universe.GetStations()) {
-            if (test) {
-                s.CreateHangar(PlayerCorp);
-            }
-            test = !test;
-        }
+
+        OSTData.Station city = Universe.GetStation(2);
+        city.CreateHangar(PlayerCorp);
+        OSTData.Station mine = Universe.GetStation(6);
+        mine.CreateHangar(PlayerCorp);
+        OSTData.Ship ship = city.CreateShip(PlayerCorp);
+        OSTData.ShipDestination dest = ship.AddDestination(city);
+        dest.AddLoad(OSTData.ResourceElement.ResourceType.Wastes, 20);
+        OSTData.ShipDestination dest2 = ship.AddDestination(mine);
+        dest2.AddUnload(OSTData.ResourceElement.ResourceType.Wastes, 20);
+        dest2.AddLoad(OSTData.ResourceElement.ResourceType.Tobernite, 20);
+        ship.Start();
     }
 
     private void Update() {
@@ -26,6 +31,8 @@ public class DataModel : MonoBehaviour {
         while (time > timePerUpdate) {
             time -= timePerUpdate;
             Universe.Update();
+            OSTData.Ship s = Universe.Ships[0];
+            Debug.Log(s.CurrentStation);
         }
     }
 }

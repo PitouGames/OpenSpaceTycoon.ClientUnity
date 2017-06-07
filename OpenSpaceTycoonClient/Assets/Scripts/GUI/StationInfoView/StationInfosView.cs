@@ -16,6 +16,9 @@ public class StationInfosView : MonoBehaviour {
     [SerializeField]
     private TMPro.TextMeshProUGUI buying = null;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI standing = null;
+
     private Station _station = null;
 
     public void SetStation(Station station) {
@@ -34,6 +37,11 @@ public class StationInfosView : MonoBehaviour {
                 tmp += b.ToString() + " for " + _station.GetBuyingPrice(b) + " ICU";
             }
             buying.text = tmp;
+            tmp = "standing : ";
+            foreach (ResourceElement.ResourceType t in System.Enum.GetValues(typeof(ResourceElement.ResourceType))) {
+                tmp += t.ToString() + ":" + _station.GetStanding(t, 1) + "\n";
+            }
+            standing.text = tmp;
         }
     }
 }
