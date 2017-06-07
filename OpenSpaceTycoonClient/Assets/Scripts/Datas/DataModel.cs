@@ -5,19 +5,26 @@ public class DataModel : MonoBehaviour {
     public OSTData.Corporation PlayerCorp { get; set; }
 
     private float time = 0.0f;
+    private float timePerUpdate = 1.0f;
 
     private void Start() {
         Universe = new OSTData.Universe(0);
-        foreach (var s in Universe.GetStations()) {
-            s.InitProduct();
-        }
+        Universe.Build();
+
         PlayerCorp = Universe.CreateCorp(1);
+        bool test = false;
+        foreach (OSTData.Station s in Universe.GetStations()) {
+            if (test) {
+                s.CreateHangar(PlayerCorp);
+            }
+            test = !test;
+        }
     }
 
     private void Update() {
         time += Time.deltaTime;
-        while (time > 0.2f) {
-            time -= 0.2f;
+        while (time > timePerUpdate) {
+            time -= timePerUpdate;
             Universe.Update();
         }
     }

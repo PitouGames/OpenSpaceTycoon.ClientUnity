@@ -16,6 +16,9 @@ public class TestGUIManager : MonoBehaviour {
     [SerializeField]
     private ResourceHolderView resourceHolderViewPrefab = null;
 
+    [SerializeField]
+    private HangarListView hangarListPrefab = null;
+
     private DataModel dataModel = null;
 
     private void Start() {
@@ -50,6 +53,13 @@ public class TestGUIManager : MonoBehaviour {
         StationList newObj = Instantiate<StationList>(stationListPrefab);
         Window window = winSystem.NewWindow("StationList", newObj.gameObject);
         window.Title = "Station list";
+        newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void CreateMyHangarsView() {
+        HangarListView newObj = Instantiate<HangarListView>(hangarListPrefab);
+        Window window = winSystem.NewWindow("HangarList", newObj.gameObject);
+        window.Title = "Hangar list";
         newObj.SetUniverse(dataModel.Universe);
     }
 
