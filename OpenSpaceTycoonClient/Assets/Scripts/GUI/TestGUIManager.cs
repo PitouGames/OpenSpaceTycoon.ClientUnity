@@ -22,6 +22,9 @@ public class TestGUIManager : MonoBehaviour {
     [SerializeField]
     private HangarView hangarViewPrefab = null;
 
+    [SerializeField]
+    private ShipListView shipListViewPrefab = null;
+
     private DataModel dataModel = null;
 
     private void Start() {
@@ -71,6 +74,13 @@ public class TestGUIManager : MonoBehaviour {
         Window window = winSystem.NewWindow("HangarView", newObj.gameObject);
         window.Title = "Hangar " + h.Station.Name;
         newObj.SetHangar(h);
+    }
+
+    public void CreateMyShipListView() {
+        ShipListView newObj = Instantiate<ShipListView>(shipListViewPrefab);
+        Window window = winSystem.NewWindow("ShipList", newObj.gameObject);
+        window.Title = "My ships";
+        newObj.SetUniverse(dataModel.Universe);
     }
 
     public void LoadZone(InputField field) {
