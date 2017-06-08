@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class HangarLineView : MonoBehaviour {
 
@@ -8,6 +7,14 @@ public class HangarLineView : MonoBehaviour {
     private TMPro.TextMeshProUGUI stationName = null;
 
     private OSTData.Hangar _hangar = null;
+
+    private void Awake() {
+        Button but = GetComponent<Button>();
+        but.onClick.AddListener(() => {
+            TestGUIManager manager = GameObject.FindObjectOfType<TestGUIManager>();
+            manager.CreateHangarView(_hangar);
+        });
+    }
 
     public void SetHangar(OSTData.Hangar h) {
         _hangar = h;

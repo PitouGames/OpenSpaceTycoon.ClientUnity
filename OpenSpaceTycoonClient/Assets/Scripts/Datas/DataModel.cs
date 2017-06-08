@@ -19,10 +19,9 @@ public class DataModel : MonoBehaviour {
         mine.CreateHangar(PlayerCorp);
         OSTData.Ship ship = city.CreateShip(PlayerCorp);
         OSTData.ShipDestination dest = ship.AddDestination(city);
-        dest.AddLoad(OSTData.ResourceElement.ResourceType.Wastes, 20);
+        dest.AddLoad(OSTData.ResourceElement.ResourceType.Wastes, 1000);
         OSTData.ShipDestination dest2 = ship.AddDestination(mine);
-        dest2.AddUnload(OSTData.ResourceElement.ResourceType.Wastes, 20);
-        dest2.AddLoad(OSTData.ResourceElement.ResourceType.Tobernite, 20);
+        dest2.AddUnload(OSTData.ResourceElement.ResourceType.Wastes, 1000);
         ship.Start();
     }
 
@@ -32,7 +31,6 @@ public class DataModel : MonoBehaviour {
             time -= timePerUpdate;
             Universe.Update();
             OSTData.Ship s = Universe.Ships[0];
-            Debug.Log(s.CurrentStation);
         }
     }
 }

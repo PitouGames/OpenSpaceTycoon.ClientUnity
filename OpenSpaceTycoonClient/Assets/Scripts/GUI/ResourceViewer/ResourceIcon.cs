@@ -25,20 +25,20 @@ public class ResourceIcon : MonoBehaviour {
     [SerializeField]
     private TMPro.TextMeshProUGUI qteText = null;
 
-    private OSTData.ResourceStack _stack = null;
+    public OSTData.ResourceStack Stack { get; private set; }
 
     public void SetData(OSTData.ResourceStack stack) {
-        _stack = stack;
-        _stack.onChange += OnChange;
+        Stack = stack;
+        Stack.onChange += OnChange;
         UpdateVisu();
     }
 
     private void OnDestroy() {
-        _stack.onChange -= OnChange;
+        Stack.onChange -= OnChange;
     }
 
     private void UpdateVisu() {
-        switch (_stack.Type) {
+        switch (Stack.Type) {
             case OSTData.ResourceElement.ResourceType.Batteries: iconImage.sprite = BatteriesIcon; break;
             case OSTData.ResourceElement.ResourceType.Electronics: iconImage.sprite = ElectronicsIcon; break;
             case OSTData.ResourceElement.ResourceType.Fertilizer: iconImage.sprite = FertilizerIcon; break;
@@ -54,7 +54,7 @@ public class ResourceIcon : MonoBehaviour {
             case OSTData.ResourceElement.ResourceType.Water: iconImage.sprite = WaterIcon; break;
         }
 
-        qteText.text = _stack.Qte.ToString();
+        qteText.text = Stack.Qte.ToString();
     }
 
     private void OnChange(OSTData.ResourceStack s) {
