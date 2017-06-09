@@ -19,9 +19,9 @@ public class DataModel : MonoBehaviour {
         mine.CreateHangar(PlayerCorp);
         OSTData.Ship ship = city.CreateShip(PlayerCorp);
         OSTData.ShipDestination dest = ship.AddDestination(city);
-        dest.AddLoad(OSTData.ResourceElement.ResourceType.Wastes, 1000);
+        dest.AddLoad(OSTData.ResourceElement.ResourceType.Wastes, 50);
         OSTData.ShipDestination dest2 = ship.AddDestination(mine);
-        dest2.AddUnload(OSTData.ResourceElement.ResourceType.Wastes, 1000);
+        dest2.AddUnload(OSTData.ResourceElement.ResourceType.Wastes, 50);
         ship.Start();
     }
 
