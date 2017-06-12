@@ -36,7 +36,7 @@ public class ResourceHolderView : MonoBehaviour {
 
     private void OnRemoveStack(OSTData.ResourceStack stack) {
         foreach (var s in iconZone.transform.GetComponentsInChildren<ResourceIcon>()) {
-            if (s.Stack.Equals(s)) {
+            if (s.Stack.Type == stack.Type) {
                 Destroy(s.gameObject);
             }
         }
