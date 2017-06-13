@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 
 public class HangarListView : MonoBehaviour {
+
+    [System.NonSerialized]
     private OSTData.Universe _universe = null;
 
     [SerializeField]

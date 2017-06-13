@@ -1,7 +1,16 @@
 ﻿using UnityEngine;
 
 public class DataModel : MonoBehaviour {
-    public OSTData.Universe Universe { get; set; }
+
+    [System.NonSerialized]
+    private OSTData.Universe _Universe = null;
+
+    public OSTData.Universe Universe {
+        get { return _Universe; }
+
+        set { _Universe = value; }
+    }
+
     public OSTData.Corporation PlayerCorp { get; set; }
 
     private float time = 0.0f;
@@ -14,7 +23,7 @@ public class DataModel : MonoBehaviour {
         Universe.Build();
 
         PlayerCorp = Universe.CreateCorp(1);
-        PlayerCorp.AddICU(100, "start");
+        PlayerCorp.AddICU(200, "starting");
 
         OSTData.Station city = Universe.GetStation(2);
         city.CreateHangar(PlayerCorp);

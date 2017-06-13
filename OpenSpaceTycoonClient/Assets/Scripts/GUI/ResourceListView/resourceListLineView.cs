@@ -3,13 +3,13 @@
 public class resourceListLineView : MonoBehaviour {
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI name = null;
+    private TMPro.TextMeshProUGUI nameText = null;
 
     private OSTData.ResourceElement.ResourceType _type = OSTData.ResourceElement.ResourceType.Unknown;
 
     public void SetType(OSTData.ResourceElement.ResourceType type) {
         _type = type;
-        name.text = type.ToString();
+        nameText.text = type.ToString();
     }
 
     public void OnClic() {

@@ -23,11 +23,13 @@ public class ResourceInfosView : MonoBehaviour {
                 ResourceProducerLine line = Instantiate<ResourceProducerLine>(producerLinePrefab);
                 line.transform.SetParent(producerContent);
                 line.SetStation(s);
+                line.SetPrice(0);
             }
             if (s.Buyings.Contains(type)) {
                 ResourceProducerLine line = Instantiate<ResourceProducerLine>(producerLinePrefab);
                 line.transform.SetParent(consumerContent);
                 line.SetStation(s);
+                line.SetPrice(s.GetBuyingPrice(type));
             }
         }
     }

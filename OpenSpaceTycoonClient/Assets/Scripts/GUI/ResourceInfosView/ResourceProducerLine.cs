@@ -3,13 +3,22 @@
 public class ResourceProducerLine : MonoBehaviour {
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI name = null;
+    private TMPro.TextMeshProUGUI nameTxt = null;
 
+    [SerializeField]
+    private TMPro.TextMeshProUGUI priceTxt = null;
+
+    [System.NonSerialized]
     private OSTData.Station _station = null;
 
     public void SetStation(OSTData.Station station) {
         _station = station;
-        name.text = station.Name;
+        nameTxt.text = station.Name;
+        priceTxt.text = "";
+    }
+
+    public void SetPrice(int price) {
+        priceTxt.text = price.ToString() + "ICU";
     }
 
     public void OnClic() {

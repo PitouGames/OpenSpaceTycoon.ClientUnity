@@ -19,6 +19,7 @@ public class StationInfosView : MonoBehaviour {
     [SerializeField]
     private TMPro.TextMeshProUGUI standing = null;
 
+    [System.NonSerialized]
     private Station _station = null;
 
     public void SetStation(Station station) {
@@ -26,6 +27,11 @@ public class StationInfosView : MonoBehaviour {
         hangarView.SetZone(station.GetHangar(-1));
 
         UpdateView();
+    }
+
+    public void OnCreateShipClic() {
+        DataModel model = FindObjectOfType<DataModel>();
+        _station.CreateShip(model.PlayerCorp);
     }
 
     private void UpdateView() {
