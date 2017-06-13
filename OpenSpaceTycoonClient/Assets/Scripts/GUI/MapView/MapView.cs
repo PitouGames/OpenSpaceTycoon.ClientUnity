@@ -4,6 +4,8 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class MapView : MonoBehaviour {
+
+    [System.NonSerialized]
     private OSTData.Universe _universe = null;
 
     [SerializeField]

@@ -16,8 +16,7 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     private RectTransform mRectTrans = null;
     private WindowSystem windowSystem = null;
 
-    public Transform Content
-    {
+    public Transform Content {
         get { return content; }
     }
 
@@ -38,11 +37,9 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
         mRectTrans.anchoredPosition = position;
     }
 
-    public string Title
-    {
+    public string Title {
         get { return (title == null ? "" : title.text); }
-        set
-        {
+        set {
             if (title != null) {
                 title.text = value;
             }
@@ -54,7 +51,6 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     }
 
     public void OnPointerClick(PointerEventData data) {
-        Debug.Log("clic");
     }
 
     public void OnPointerDown(PointerEventData data) {

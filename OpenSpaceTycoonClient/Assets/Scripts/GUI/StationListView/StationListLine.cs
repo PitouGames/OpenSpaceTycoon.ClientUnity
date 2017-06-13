@@ -6,6 +6,7 @@ public class StationListLine : MonoBehaviour {
     [SerializeField]
     private Text stationName = null;
 
+    [System.NonSerialized]
     private OSTData.Station _station = null;
 
     public void SetStation(OSTData.Station station) {

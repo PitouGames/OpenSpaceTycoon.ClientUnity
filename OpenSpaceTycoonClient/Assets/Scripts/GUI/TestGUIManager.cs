@@ -16,6 +16,24 @@ public class TestGUIManager : MonoBehaviour {
     [SerializeField]
     private ResourceHolderView resourceHolderViewPrefab = null;
 
+    [SerializeField]
+    private HangarListView hangarListPrefab = null;
+
+    [SerializeField]
+    private HangarView hangarViewPrefab = null;
+
+    [SerializeField]
+    private ShipListView shipListViewPrefab = null;
+
+    [SerializeField]
+    private ResourceListView resourceListViewPrefab = null;
+
+    [SerializeField]
+    private ResourceInfosView resourceInfoViewPrefab = null;
+
+    [SerializeField]
+    private ShipInfoView shipInfoViewPrefab = null;
+
     private DataModel dataModel = null;
 
     private void Start() {
@@ -51,6 +69,47 @@ public class TestGUIManager : MonoBehaviour {
         Window window = winSystem.NewWindow("StationList", newObj.gameObject);
         window.Title = "Station list";
         newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void CreateMyHangarsView() {
+        HangarListView newObj = Instantiate<HangarListView>(hangarListPrefab);
+        Window window = winSystem.NewWindow("HangarList", newObj.gameObject);
+        window.Title = "Hangar list";
+        newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void CreateHangarView(OSTData.Hangar h) {
+        HangarView newObj = Instantiate<HangarView>(hangarViewPrefab);
+        Window window = winSystem.NewWindow("HangarView", newObj.gameObject);
+        window.Title = "Hangar " + h.Station.Name;
+        newObj.SetHangar(h);
+    }
+
+    public void CreateMyShipListView() {
+        ShipListView newObj = Instantiate<ShipListView>(shipListViewPrefab);
+        Window window = winSystem.NewWindow("ShipList", newObj.gameObject);
+        window.Title = "My ships";
+        newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void CreateShipInfoView(OSTData.Ship ship) {
+        ShipInfoView view = Instantiate<ShipInfoView>(shipInfoViewPrefab);
+        Window window = winSystem.NewWindow("ship info", view.gameObject);
+        window.Title = "Ship " + ship.ID;
+        view.SetShip(ship);
+    }
+
+    public void CreateResourceListView() {
+        ResourceListView newObj = Instantiate<ResourceListView>(resourceListViewPrefab);
+        Window window = winSystem.NewWindow("ResourceList", newObj.gameObject);
+        window.Title = "resources list";
+    }
+
+    public void CreateResourceInfoView(OSTData.ResourceElement.ResourceType t) {
+        ResourceInfosView newObj = Instantiate<ResourceInfosView>(resourceInfoViewPrefab);
+        Window window = winSystem.NewWindow("Resource Info", newObj.gameObject);
+        window.Title = "resource info";
+        newObj.SetData(t);
     }
 
     public void LoadZone(InputField field) {
