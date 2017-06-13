@@ -25,6 +25,12 @@ public class TestGUIManager : MonoBehaviour {
     [SerializeField]
     private ShipListView shipListViewPrefab = null;
 
+    [SerializeField]
+    private ResourceListView resourceListViewPrefab = null;
+
+    [SerializeField]
+    private ResourceInfosView resourceInfoViewPrefab = null;
+
     private DataModel dataModel = null;
 
     private void Start() {
@@ -81,6 +87,19 @@ public class TestGUIManager : MonoBehaviour {
         Window window = winSystem.NewWindow("ShipList", newObj.gameObject);
         window.Title = "My ships";
         newObj.SetUniverse(dataModel.Universe);
+    }
+
+    public void CreateResourceListView() {
+        ResourceListView newObj = Instantiate<ResourceListView>(resourceListViewPrefab);
+        Window window = winSystem.NewWindow("ResourceList", newObj.gameObject);
+        window.Title = "resources list";
+    }
+
+    public void CreateResourceInfoView(OSTData.ResourceElement.ResourceType t) {
+        ResourceInfosView newObj = Instantiate<ResourceInfosView>(resourceInfoViewPrefab);
+        Window window = winSystem.NewWindow("Resource Info", newObj.gameObject);
+        window.Title = "resource info";
+        newObj.SetData(t);
     }
 
     public void LoadZone(InputField field) {
