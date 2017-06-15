@@ -24,6 +24,11 @@ public class ShipInfoView : MonoBehaviour {
         UpdateDestinations();
     }
 
+    public void OnNewDestClic() {
+        DataModel model = FindObjectOfType<DataModel>();
+        _ship.AddDestination(model.Universe.GetStation(1));
+    }
+
     private void OnDestroy() {
         _ship.onDestinationChange -= UpdateDestinations;
     }
@@ -37,6 +42,7 @@ public class ShipInfoView : MonoBehaviour {
             ShipDestinationLine line = Instantiate<ShipDestinationLine>(destLinePrefab);
             line.transform.SetParent(destinationContent);
             line.SetDestination(d);
+            line.SetEditable(d != _ship.CurrentDestination);
         }
     }
 }
