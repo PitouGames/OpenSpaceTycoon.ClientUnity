@@ -4,6 +4,14 @@ using UnityEngine.UI;
 
 public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
 
+    #region events
+
+    public delegate void WindowAction(Window w);
+
+    public event WindowAction OnClose = delegate { };
+
+    #endregion events
+
     [SerializeField]
     private Button closeButton = null;
 
@@ -19,6 +27,8 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     public Transform Content {
         get { return content; }
     }
+
+    public string WindowType { get; set; }
 
     private void Awake() {
         if (null != closeButton) {
@@ -47,6 +57,7 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     }
 
     private void CloseWindow() {
+        OnClose(this);
         GameObject.Destroy(gameObject);
     }
 
