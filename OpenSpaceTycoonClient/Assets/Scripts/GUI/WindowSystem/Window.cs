@@ -4,6 +4,14 @@ using UnityEngine.UI;
 
 public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
 
+    #region events
+
+    public delegate void WindowAction(Window w);
+
+    public event WindowAction OnClose = delegate { };
+
+    #endregion events
+
     [SerializeField]
     private Button closeButton = null;
 
@@ -16,10 +24,11 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     private RectTransform mRectTrans = null;
     private WindowSystem windowSystem = null;
 
-    public Transform Content
-    {
+    public Transform Content {
         get { return content; }
     }
+
+    public string WindowType { get; set; }
 
     private void Awake() {
         if (null != closeButton) {
@@ -38,11 +47,9 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
         mRectTrans.anchoredPosition = position;
     }
 
-    public string Title
-    {
+    public string Title {
         get { return (title == null ? "" : title.text); }
-        set
-        {
+        set {
             if (title != null) {
                 title.text = value;
             }
@@ -50,11 +57,11 @@ public class Window : MonoBehaviour, IPointerClickHandler, IPointerDownHandler {
     }
 
     private void CloseWindow() {
+        OnClose(this);
         GameObject.Destroy(gameObject);
     }
 
     public void OnPointerClick(PointerEventData data) {
-        Debug.Log("clic");
     }
 
     public void OnPointerDown(PointerEventData data) {
